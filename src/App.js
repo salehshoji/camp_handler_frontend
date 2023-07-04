@@ -7,6 +7,7 @@ function App() {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLogin, setIsLogin] = useState(true)
 
   // User Login info
   const database = [
@@ -49,10 +50,11 @@ function App() {
   };
 
   // Generate JSX code for error message
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
+  const renderErrorMessage = (name) =>{
+    if (name === errorMessages.name){
+      return <div className="error">har har {errorMessages.message}</div>
+    }
+  };
 
   // JSX code for login form
   const renderForm = (
@@ -69,9 +71,9 @@ function App() {
           {renderErrorMessage("pass")}
         </div>
         <div className="button-container">
-          <input type="submit" />
+          <input type="submit" name="submit"/>
         </div>
-      </form>
+        </form>
     </div>
   );
 
@@ -81,11 +83,11 @@ function App() {
         <div className="title">Log in</div>
         {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
       </div>
-      <div>
-      <button>Sign up</button>
-      </div>
     </div>
   );
 }
 
+function signup(){
+  console.log("signup done!")
+}
 export default App;
